@@ -27,5 +27,7 @@ public class UrlMappingQuiz04 extends HttpServlet {
 		
 		out.print("</ul>");
 		out.print("</body></html>");
+		
+		// 테스트용 주석 추가
 		}
 }
