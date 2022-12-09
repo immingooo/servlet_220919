@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Quiz03</title>
+<title>Quiz05_1</title>
 	<!-- 제이쿼리 원본, 부트스트랩 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,19 +12,35 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
+	<%
+		int length = Integer.valueOf(request.getParameter("length"));
+		String[] unitArr = request.getParameterValues("unit"); // checkbox, 여러값 => getParameterValues()
+	%>
 	<div class="container">
-		<h1>체격 조건 입력</h1>
-		<form method="get" action="/lesson02/quiz03_1.jsp">
-			<div class="form-group d-flex">
-				<input type="text" name="height" class="form-control col-2 mr-2" placeholder="키를 입력하세요.">
-				<span class="mt-3">cm</span>
-				<input type="text" name="weight" class="form-control col-2 mr-2 ml-2" placeholder="몸무게를 입력하세요.">
-				<span class="mt-3">kg</span>
-				<button class="btn btn-info ml-2" type="submit">계산</button>
-			</div>
-		</form>
+		<h1>길이 변환 결과</h1>
+		<h3><%= length %>cm</h3>
+		<hr>
+		<h2>
+			<%
+				if (unitArr != null) {
+				for (String unit : unitArr) { 
+					if (unit.equals("in")) {
+						double in = length * 0.393701;
+						out.print(in + "in<br>");
+					} else if (unit.equals("yd")) {
+						double yd = length * 0.0109361;
+						out.print(yd + "yd<br>");
+					} else if (unit.equals("ft")) {
+						double ft = length * 0.0328084;
+						out.print(ft + "ft<br>");
+					} else if (unit.equals("m")) {
+						double m = length / 100.0;
+						out.print(m + "m<br>");
+					}
+				}
+			}
+			%>
+		</h2>
 	</div>
-
 </body>
 </html>
