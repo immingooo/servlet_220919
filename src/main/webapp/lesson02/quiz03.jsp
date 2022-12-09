@@ -12,17 +12,19 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+
 	<div class="container">
 		<h1>체격 조건 입력</h1>
-		<form method="get" action="/lesson01/quiz03_1">
+		<form method="get" action="/lesson02/quiz03_1.jsp">
 			<div class="form-group d-flex">
 				<input type="text" name="height" class="form-control col-2 mr-2" placeholder="키를 입력하세요.">
 				cm
 				<input type="text" name="weight" class="form-control col-2 mr-2 ml-2" placeholder="몸무게를 입력하세요.">
 				kg
-				<a href="/lesson01/quiz03_1?height=height&weight=weight" class="btn btn-info ml-2" type="submit">계산</a>
+				<button class="btn btn-info ml-2" type="submit">계산</button>
 			</div>
 		</form>
 	</div>
+
 </body>
 </html>
