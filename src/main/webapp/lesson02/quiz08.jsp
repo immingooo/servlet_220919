@@ -72,12 +72,10 @@ list.add(map);
 			<tbody>
 			<%
 				for (Map<String, Object> item : list) {
-					
-				
 			%>
 				<tr>
 					<td><%= item.get("id") %></td>
-					<td><%= item.get("image") %></td>
+					<td><img src="<%= item.get("image") %>" alt="책표지" width="60px" height="80px"></td>
 					<td>
 						<a href="/lesson02/quiz08_1.jsp?id=<%= item.get("id") %>"><%= item.get("title") %></a>
 					</td>
