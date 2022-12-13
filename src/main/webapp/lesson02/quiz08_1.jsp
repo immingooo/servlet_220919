@@ -60,32 +60,26 @@ map = new HashMap<String, Object>() {
 list.add(map);
 %>
 <%
+	// 테이블에 보여줄 책 정보 뽑아내기
 	int id = Integer.valueOf(request.getParameter("id"));
 	//out.print(id);
+	Map<String, Object> target = new HashMap<>();
+	for (Map<String, Object> item : list) {
+		if((int)item.get("id") == id) {
+			target = item;
+			break;
+		}
+	}
 %>
-	<div class="container">
-		<table>
-		<%
-			for (Map<String, Object> item : list) {
-				if(item.get("id").equals(id)) {
-		%>
-			<tr>
-				<td rowspan="4"><img src="<%= item.get("image")%>" alt="책표지" width="200px" height="300px"></td>
-				<td><span class="display-3 font-weight-bold"><%= item.get("title") %></span></td>
-			</tr>
-			<tr>
-				<td><span class="text-info display-4"><%= item.get("author") %></span></td>
-			</tr>
-			<tr>
-				<td rowspan="2"><h1 class="text-secondary"><%= item.get("publisher") %></h1></td>
-			</tr>
-			<tr>
-			</tr>
-		<%
-				}
-			}
-		%>
-		</table>
+	<div class="container d-flex">
+		<div>
+			<img src="<%= target.get("image")%>" alt="책표지" width="300px">
+		</div>
+		<div>
+			<span class="display-2 font-weight-bold d-block"><%= target.get("title") %></span>
+			<span class="text-info display-3 d-block"><%= target.get("author") %></span>
+			<div class="display-4 text-secondary"><%= target.get("publisher") %></div>
+		</div>
 	</div>
 </body>
 </html>
