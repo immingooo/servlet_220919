@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <ul class="nav nav-fill w-100">
-	<li class="nav-item"><a href="?category=전체"
+	<li class="nav-item"><a href="/lesson03/quiz01/template.jsp?category=전체"
 		class="nav-link text-white">전체</a></li>
 	<li class="nav-item"><a href="?category=지상파"
 		class="nav-link text-white">지상파</a></li>

@@ -15,10 +15,11 @@
 	<style>
 		header {height:70px}
 		nav {height:50px}
-		.contents {height:auto}
+		.contents {height:auto} /* min-height:500px */
 		footer {height:50px}
 		
-		.text-white {color:white}
+		.text-white {color:white} /* #fff */
+		/* a, a:hover {color: #fff} */
 	</style>
 </head>
 <body>
@@ -74,6 +75,12 @@
 				String contentName = "content1.jsp";
 				String category = request.getParameter("category");
 				// out.print(category); // null
+				
+				// 카테고리가 null일 때(전체) 또는 카테고리명이 일치할 때 => 출력
+				/* if(category == null || item.get("category".equals(category))) {
+					
+				} */
+				
 				if (category != null) {
 					if (category.equals("전체")) {
 						contentName = "content1.jsp";
