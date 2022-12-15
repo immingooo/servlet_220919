@@ -1,7 +1,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+    pageEncoding="UTF-8"%>
+
 <%
 // 아티스트 정보 
 
@@ -82,36 +82,47 @@
     musicList.add(musicInfo);
 %>
 
-<%
-	int id = Integer.valueOf(request.getParameter("id"));
-%>
-
+<%-- 곡 정보 --%>
 <section class="content1">
-	<h4>곡 정보</h4>
-	<div class="border border-success d-flex">
+	<h4 class="mt-3">곡 정보</h4>
+	<div class="border border-success d-flex p-3">
 		<%
+			String title = request.getParameter("title");
+			//int id = Integer.valueOf(request.getParameter("id")); // id말고 둘다 앨범이름으로 받아야겠눼
+			//out.print(id);
+		
 			for (Map<String, Object> item : musicList) {
-				if (item.get("id").equals("id")) {
-		%>
-		<img src="<%=item.get("photo")%> " alt="가수 사진" height="200px" class="m-3">
-		<div class="m-3">
-			<h1><%=item.get("title")%></h1>
-			<div class="text-success font-weight-bold"><%=item.get("singer")%></div>
-			<table>
-			<%
-				for () {
+				if (item.get("title").equals(title)) {
 					
-				}
-			%>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<div>앨범<%=item.get("title")%></div>
-			<div><%=item.get("title")%></div>
-			<div><%=item.get("title")%></div>
-			<div><%=item.get("title")%></div>
+		%>
+		<img src="<%= item.get("thumbnail") %> " alt="앨범 이미지" width="150px">
+		<div class="ml-3">
+			<h2><%= item.get("title") %></h2>
+			<div class="text-success font-weight-bold"><%= item.get("singer") %></div>
+			<small>
+				<table class="mt-3">
+					<tr>
+						<td>앨범</td>
+						<td><%= item.get("album") %></td>
+					</tr>
+					<tr>
+						<td>재생시간</td>
+						<td>
+							<%= (int)item.get("time") / 60 %> : <%= (int)item.get("time") % 60 %>
+							</td>
+					</tr>
+					<tr>
+						<td>작곡가</td>
+						<td><%= item.get("composer") %></td>
+					</tr>
+					<tr>
+						<td>작사가</td>
+						<td><%= item.get("lyricist") %></td>
+					</tr>
+				</table>
+			</small>
+			<%-- <div><%= artistInfo.get("agency") %></div>
+			<div><%= artistInfo.get("debute") %> 데뷔</div> --%>
 		</div>
 		<%
 				}
@@ -119,29 +130,9 @@
 		%>
 	</div>
 </section>
-<section class="content2 mt-3">
-	<h3>곡 목록</h3>
-	<table class="table text-center">
-		<thead>
-			<tr>
-				<th>no</th>
-				<th>제목</th>
-				<th>앨범</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-			for (Map<String, Object> item : musicList) {
-			%>
-			<tr>
-				<td><%=item.get("id")%></td>
-				<td><a
-					href="/lesson03/quiz02/contents.jsp?id=<%=item.get("id")%>"><%=item.get("title")%></a></td>
-				<td><%=item.get("album")%></td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
+<%-- 가사 --%>
+<section class="content2 mt-5">
+	<h3>가사</h3>
+	<hr>
+	가사 정보 없음
 </section>
