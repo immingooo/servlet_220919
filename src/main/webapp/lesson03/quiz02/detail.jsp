@@ -82,57 +82,79 @@
     musicList.add(musicInfo);
 %>
 
+<%
+	
+	// 상세 정보를 보여줄 target map 세팅
+	Map<String, Object> target = null;
+	
+	// 1. 목록에서 클릭한 경우(id값) - a href
+	if (request.getParameter("id") != null) {
+		int id = Integer.valueOf(request.getParameter("id"));
+		for (Map<String, Object> item : musicList) {
+			if ((int)item.get("id") == id) { // Object는 명확하게 자료형을 써주는 게 좋다.
+				target = item;
+				break;
+			}
+		}
+	}
+	
+	// 2. 상단에서 검색한 경우(search) - form
+	if (request.getParameter("search") != null) {
+		String search = request.getParameter("search");
+		for (Map<String, Object> item : musicList) {
+			if (item.get("title").equals(search)) {
+				target = item;
+				break;
+			}
+		}
+	}
+	
+%>
+
+<%
+	if (target != null) {
+%>
 <%-- 곡 정보 --%>
 <section class="content1">
-	<h4 class="mt-3">곡 정보</h4>
+	<h4 class="mt-3 font-weight-bold">곡 정보</h4>
 	<div class="border border-success d-flex p-3">
 		<%
 			String title = request.getParameter("title");
-			//int id = Integer.valueOf(request.getParameter("id")); // id말고 둘다 앨범이름으로 받아야겠눼
-			//out.print(id);
 		
-			for (Map<String, Object> item : musicList) {
-				if (item.get("title").equals(title)) {
-					
 		%>
-		<img src="<%= item.get("thumbnail") %> " alt="앨범 이미지" width="150px">
+		<img src="<%= target.get("thumbnail") %> " alt="앨범 이미지" width="150px">
 		<div class="ml-3">
-			<h2><%= item.get("title") %></h2>
-			<div class="text-success font-weight-bold"><%= item.get("singer") %></div>
-			<small>
-				<table class="mt-3">
-					<tr>
-						<td>앨범</td>
-						<td><%= item.get("album") %></td>
-					</tr>
-					<tr>
-						<td>재생시간</td>
-						<td>
-							<%= (int)item.get("time") / 60 %> : <%= (int)item.get("time") % 60 %>
-							</td>
-					</tr>
-					<tr>
-						<td>작곡가</td>
-						<td><%= item.get("composer") %></td>
-					</tr>
-					<tr>
-						<td>작사가</td>
-						<td><%= item.get("lyricist") %></td>
-					</tr>
-				</table>
-			</small>
-			<%-- <div><%= artistInfo.get("agency") %></div>
-			<div><%= artistInfo.get("debute") %> 데뷔</div> --%>
+			<div class="display-4"><%= target.get("title") %></div>
+			<div class="text-success font-weight-bold"><%= target.get("singer") %></div>
+			<div class="music-info-text d-flex mt-3">
+				<div class="mr-4">
+					<div>앨범</div>
+					<div>재생시간</div>
+					<div>작곡가</div>
+					<div>작사가</div>
+				</div>
+				<div>
+					<div><%= target.get("album") %></div>
+					<div><%= (int)target.get("time") / 60 %> : <%= (int)target.get("time") % 60 %></div>
+					<div><%= target.get("composer") %></div>
+					<div><%= target.get("lyricist") %></div>
+				</div>
+			</div>
 		</div>
-		<%
-				}
-			}
-		%>
 	</div>
 </section>
 <%-- 가사 --%>
 <section class="content2 mt-5">
-	<h3>가사</h3>
+	<h4 class="font-weight-bold">가사</h4>
 	<hr>
 	가사 정보 없음
 </section>
+
+<%
+	} // target null 아닌지 체크 끝
+	else {
+%>
+<h1>정보없음</h1>
+<%
+	} // target이 없을 때 끝
+%>

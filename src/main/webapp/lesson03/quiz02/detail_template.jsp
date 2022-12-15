@@ -22,6 +22,8 @@
 		
 		.nav-text {color: black;}
 		a:hover {text-decoration:none;}
+		
+		.music-info-text {font-size:12px; color:#777;}
 	</style>
 </head>
 <body>
