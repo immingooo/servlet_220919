@@ -20,7 +20,7 @@
 	ms.connect();
 	
 	// DB select query
-	String selectQuery = "select `name`, `url` from `favorites` order by `id` desc";
+	String selectQuery = "select `id`, `name`, `url` from `favorites` order by `id` desc";
 	ResultSet rs = ms.select(selectQuery);
 %>
 	<div class="container">
@@ -39,7 +39,7 @@
 				<tr>
 					<td><%= rs.getString("name") %></td>
 					<td><a href="<%= rs.getString("url") %>"><%= rs.getString("url") %></a></td>
-					<td><a href="">삭제하기</a></td>
+					<td><a href="/lesson04/quiz02_delete?id=<%= rs.getString("id") %>">삭제하기</a></td>
 				</tr>
 			<%
 				}
