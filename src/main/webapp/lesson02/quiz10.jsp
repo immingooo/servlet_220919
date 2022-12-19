@@ -40,9 +40,9 @@
 			</thead>
 			<tbody>
 			<%
-				int oneDayNum = today.get(today.DAY_OF_WEEK); // 5 오늘날짜가 무슨요일인지(일요일(1) ~ 토요일(7))
-				int monthMaxNum = today.getActualMaximum(today.DAY_OF_MONTH); // 31 오늘날짜 월의 마지막 날짜숫자
-				int weekSize = today.getActualMaximum(today.WEEK_OF_MONTH); // 5 오늘날짜 월이 몇주가 있는지
+				int oneDayNum = today.get(Calendar.DAY_OF_WEEK); // 5 오늘날짜가 무슨요일인지(일요일(1) ~ 토요일(7))
+				int monthMaxNum = today.getActualMaximum(Calendar.DAY_OF_MONTH); // 31 오늘날짜 월의 마지막 날짜숫자
+				int weekSize = today.getActualMaximum(Calendar.WEEK_OF_MONTH); // 5 오늘날짜 월이 몇주가 있는지
 				/* out.print(oneDayNum + "<br>");
 				out.print(monthMaxNum + "<br>");
 				out.print(weekSize); */
