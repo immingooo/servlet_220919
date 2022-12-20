@@ -1,3 +1,4 @@
+<%@page import="com.test.common.MysqlService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +28,8 @@
 		article:hover {background-color: #FF9900;}
 		.div-size {width: 300px; height: 150px;}
 		
-		.content1 {height: 50px;}
+		.content1 {height: 100px;}
+		.form-size {min-height: 250px;}
 	</style>
 </head>
 <body>
@@ -39,23 +41,34 @@
 			<jsp:include page="/lesson04/quiz03/menu.jsp"/>
 		</nav>
 		<section class="contents">
-			<div class="p-5">
-				<div class="display-4 content1 bg-dark">물건 올리기</div>
-				<form method="post" action="/lesson04/quiz03_insert">
-					<select class="fomt-control">
-						<option>-아이디 선택</option>
-					</select>
-					<input type="text" name="title" placeholder="제목" class="fomt-control">
-					<input type="text" name="price" placeholder="가격" class="fomt-control"><br>
-					<textarea name="description" rows="5" cols="50" class="fomt-control"></textarea>
-					<input type="submit" value="저장" class="btn">
-				</form>
-			</div>
-			<%-- <jsp:include page="/lesson04/quiz03/upload.jsp"/> --%>
+			<jsp:include page="/lesson04/quiz03/upload.jsp"/>
 		</section>
 		<footer class="d-flex justify-content-center align-items-center">
 			<jsp:include page="/lesson04/quiz03/footer.jsp"/>
 		</footer>
 	</div>
+<script type="text/javascript">
+	$('#saveBtn').on('click', function() {
+		// alert("1111");
+		let id = $('#id').val();
+		let title = $('#title').val();
+		let price = $('#price').val();
+		//let description = $('#description').val();
+		//let pictureUrl = $('#pictureUrl').val().trim();
+		
+		if (id == "") {
+			alert('아이디를 선택해주세요.');
+			return false;
+		}
+		if (title == "") {
+			alert('제목을 입력해주세요.');
+			return false;
+		}
+		if (price == "") {
+			alert('가격을 입력해주세요.');
+			return false;
+		}
+	});
+</script>
 </body>
 </html>

@@ -28,6 +28,8 @@
 		.media-parent-box {gap: 20px 25px;}
 		article:hover {background-color: #FF9900;}
 		.div-size {width: 300px; height: 150px;}
+		
+		a:hover {text-decoration: none; text-color: white;}
 	</style>
 </head>
 <body>
